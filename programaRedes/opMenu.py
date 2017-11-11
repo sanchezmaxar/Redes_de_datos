@@ -20,7 +20,7 @@ def sub_host():
 		act+=1
 	bitsH=act
 	act=0
-	while (2**act)<subredes+2:
+	while (2**act)<subredes:
 		act+=1
 	bitsR=act
 	tRedes=2**act
@@ -28,14 +28,11 @@ def sub_host():
 	if NMascaraLimite[ip[-1]]<(bitsR+bitsH):
 		print "Error: no puedes usar mas bits de los que te permite la clase"
 	else:
-		finish(tRedes,tHost,bitsR,ip,bitsH)
+		finish(tRedes,tHost,bitsR,ip,bitsR)
 
 def ip_bits():
 	bitsMascaraNormal={"A":8,"Pruebas de conectividad":8,"B":16,"C":24}
 	ipmask=getIpMask()
-	print ipmask
 	bitsR=ipmask[-1]-bitsMascaraNormal[ipmask[-2]]
 	bitsH=32-ipmask[-1]
-	print bitsR
-	print bitsH
 	finish(2**bitsR,2**bitsH,bitsR,ipmask[:-1],bitsR)

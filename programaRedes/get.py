@@ -10,7 +10,7 @@ def getAll(variable,caso,ip):
 	tHost=2**(NMascaraLimite[ip[-1]]-act)
 	if caso=='host':
 		act=NMascaraLimite[ip[-1]]-act
-		finish(tHost,tRedes,bits,ip,act)
+		finish(tHost,tRedes,NMascaraLimite[ip[-1]]-bits,ip,act)
 	if caso=='subredes':
 		finish(tRedes,tHost,bits,ip,act)
 
@@ -36,7 +36,6 @@ def validaIP(ip):
 		for i in ip.split("."):
 			try:
 				if int(i) <0 or int(i)>255:
-					print i
 					print "Rango de direcciones ip no valido"
 					valida=False
 					break
@@ -86,7 +85,7 @@ def getClass(ip):
 		return "Error"
 
 def validaMask(ip,mask):
-	NMascaraLimite={"A":24,"Pruebas de conectividad":24,"B":16,"C":8,"D":0,"E":0}
+	NMascaraLimite={"A":8,"Pruebas de conectividad":8,"B":16,"C":24,"D":0,"E":0}
 	try:
 		if int(mask)>=NMascaraLimite[getClass(ip)] and int(mask)<31:
 			return True
